@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+    <style>
+        /* Réinitialisation et styles globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(6, 1, 10, 0.8), rgba(214, 241, 14, 0.8), rgba(89, 68, 5, 0.8),rgba(217, 226, 218, 0.8),rgba(204, 5, 5, 0.785));
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    padding: 20px; /* Ajout d'un padding pour éviter les coupures sur mobiles */
+}
+
+/* Style du conteneur principal */
+.container {
+    background: rgba(211, 211, 211, 0.3); /* Fond semi-transparent */
+    padding: 30px;
+    border-radius: 20px; /* Bordures arrondies */
+    width: 90%; /* Largeur adaptable */
+    max-width: 500px; /* Limite pour éviter un affichage trop large */
+    min-width: 300px; /* Minimum pour éviter que ce soit trop petit */
+
+    /* Effet de flou autour */
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2), 
+                0px 0px 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+}
+
+/* Texte animé */
+.text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    min-height: 50px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Bouton Suivant */
+.next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background: yellow;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.5);
+}
+
+.next-btn:hover {
+    background: orange;
+    box-shadow: 0px 4px 15px rgba(255, 165, 0, 0.6);
+    transform: scale(1.05);
+}
+
+/* Responsive design */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 20px;
+        width: 95%; /* S'adapte mieux aux petits écrans */
+    }
+    
+    .text {
+        font-size: 18px; /* Réduction légère de la taille */
+    }
+
+    .next-btn {
+        font-size: 16px; /* Bouton un peu plus petit */
+        padding: 8px 15px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 600px; /* Plus large sur grand écran */
+    }
+
+    .text {
+        font-size: 22px; /* Texte plus grand */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <audio id="background-music" loop>
+        <source src="assets/song1.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container">
+        <p class="text" id="animated-text"></p>
+        <button class="next-btn" onclick="goToNextPage()">Suivant</button>
+        <br><br>
+        <button class="next-btn" onclick="goToNextPage()">Précédent</button>
+    </div>
+    <iframe src="assets/song1.mp3" style="display: none;"></iframe>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let text = "La première des choses que j'aprrécie chez toi est que tu t'exprimes bien. J'écris et interagis avec beaucoup de personnes et lire certains messages me casse la tête à cause des fautes, mais ce n'est pas le cas avec toi. J'apprécie beaucoup. Tu es gaie et sympa, je sais que ce n'est qu'une petite partie de toi mais vraiment, cela suscite mon intérêt à mieux te connaitre..";
+            let index = 0;
+            let speed = 50;
+            let animatedText = document.getElementById("animated-text");
+            let audio = document.getElementById("background-music");
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    animatedText.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+            
+            typeWriter();
+            
+            // Activer la musique après un premier clic sur la page
+            document.addEventListener("click", function playMusicOnce() {
+                audio.play().catch(error => console.log("Lecture bloquée :", error));
+                document.removeEventListener("click", playMusicOnce);
+            });
+        });
+
+        function goToNextPage() {
+            window.location.href = "step3.html";
+            let audio = document.getElementById("background-music");
+            audio.paused
+        }
+    </script>
+
+</body>
+</html>

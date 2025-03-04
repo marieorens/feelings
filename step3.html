@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+    <style>
+        /* Réinitialisation et styles globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(6, 1, 10, 0.8), rgba(52, 2, 109, 0.916), hsl(197, 19%, 93%),rgba(12, 120, 25, 0.8),rgba(9, 156, 236, 0.785));
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    padding: 20px; /* Ajout d'un padding pour éviter les coupures sur mobiles */
+}
+
+/* Style du conteneur principal */
+.container {
+    background: rgba(211, 211, 211, 0.3); /* Fond semi-transparent */
+    padding: 30px;
+    border-radius: 20px; /* Bordures arrondies */
+    width: 90%; /* Largeur adaptable */
+    max-width: 500px; /* Limite pour éviter un affichage trop large */
+    min-width: 300px; /* Minimum pour éviter que ce soit trop petit */
+
+    /* Effet de flou autour */
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2), 
+                0px 0px 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+}
+
+/* Texte animé */
+.text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    min-height: 50px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Bouton Suivant */
+.next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background: yellow;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(255, 255, 0, 0.5);
+}
+
+.next-btn:hover {
+    background: orange;
+    box-shadow: 0px 4px 15px rgba(255, 165, 0, 0.6);
+    transform: scale(1.05);
+}
+
+/* Responsive design */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 20px;
+        width: 95%; /* S'adapte mieux aux petits écrans */
+    }
+    
+    .text {
+        font-size: 18px; /* Réduction légère de la taille */
+    }
+
+    .next-btn {
+        font-size: 16px; /* Bouton un peu plus petit */
+        padding: 8px 15px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 600px; /* Plus large sur grand écran */
+    }
+
+    .text {
+        font-size: 22px; /* Texte plus grand */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <audio id="background-music" loop>
+        <source src="assets/song1.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container">
+        <p class="text" id="animated-text"></p>
+        <button class="next-btn"><a href="step2.html">Précédent</a></button>
+    </div>
+    <iframe src="assets/olivia.mp3" style="display: none;"></iframe>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let text = "La dernière fois, tu m’as demandé ce que j’envisageais avec toi, et je pense qu’il est temps de te le dire, pour ne pas te faire perdre ton temps...\n Olivia, je ne sais pas si nous voyons les choses de la même manière, mais si je devais être honnête, je ne serais pas satisfait si je disais simplement que je veux une relation sérieuse avec toi. J’ai moi aussi été blessé, tout comme toi. Quelqu'un a eu à se jouer de toi, tout comme de moi. Mais tout ça appartient au passé maintenant… Le vrai amour est souvent mal perçu aujourd'hui, mais en ce qui me concerne, je veux avant tout une partenaire qui soit aussi mon amie. Quelqu’un avec qui je n’aurai pas l'impression de déranger quand je lui parle de mes longues journées, une amie dont je serai fier et qui sera fière de m’avoir. Je cherche cette personne, celle qui sourira en ma présence, qui pourra partager ses peines (même si elle sait que je ne pourrai pas toujours trouver une solution) et ses joies avec moi, sans crainte d’être jugée.\n Trêve de mots, juste des sentiments vrais et beaux, c’est tout ce que je veux partager avec toi, Olivia. Tu as toutes les raisons d’être sur tes gardes, mais parfois la lumière arrive là où on ne l'attend pas. \n Olivia, pour moi, c’est un oui. Il ne manque que ton 'oui' pour qu’un beau chapitre s’écrive. Trop de mots pourraient gâcher l’essentiel, alors je vais simplement terminer par : LET'S GIVE OURSELVES A CHANCE… NO REGRET… JUST TWO BROKEN HUMANS TRYING TO FIX THEMSELVES IN TRUE AND BEAUTIFUL WAYS… JUST SAY YES ❤️ :)";
+            let index = 0;
+            let speed = 50;
+            let animatedText = document.getElementById("animated-text");
+            let audio = document.getElementById("background-music");
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    animatedText.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+            
+            typeWriter();
+            
+            // Activer la musique après un premier clic sur la page
+            document.addEventListener("click", function playMusicOnce() {
+                audio.play().catch(error => console.log("Lecture bloquée :", error));
+                document.removeEventListener("click", playMusicOnce);
+            });
+        });
+
+        function goToNextPage() {
+            window.location.href = "reveal.html";
+            let audio = document.getElementById("background-music");
+            audio.paused
+        }
+    </script>
+
+</body>
+</html>
