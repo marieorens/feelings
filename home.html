@@ -102,18 +102,18 @@ body {
 <body>
 
     <audio id="background-music" loop>
-        <source src="assets/song1.mp3" type="audio/mp3">
+        <source src="song1.mp3" type="audio/mp3">
     </audio>
 
     <div class="container">
         <p class="text" id="animated-text"></p>
-        <button class="next-btn" onclick="goToNextPage()"><a href="step1.html">Suivant</a></button>
+        <button class="next-btn" onclick="goToNextPage()">Suivant</button>
     </div>
-    <iframe src="assets/song1.mp3" style="display: none;"></iframe>
+    <iframe src="song1.mp3" style="display: none;"></iframe>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let text = "Hey Olivia, j'espère que ça va 😊. \n Avant de commencer, je voudrais que tu touches n'importe où sur ton écran..Je me suis amusé à composer un petit beat à la guitare accoustique :) \n En effet, j'ai un peu de mal à m'exprimer par rapport à certains sujets, mais bon je vais me servir de ce que je sais faire le mieux, écrire du code informatique pour te dire ce que j'ai à te dire. \n Si cela t'intéresse, clique sur le bouton juste en bas et on y va 😉...";
+            let text = "Hey Olivia, j'espère que ça va😊. \n Avant de commencer, je voudrais que tu touches n'importe où sur la page..Je me suis amusé à composer un petit beat à la guitare :) \n En effet, j'ai un peu de mal à m'exprimer par rapport à certains sujets, mais bon je vais me servir de ce que je sais faire le mieux, écrire du code informatique pour te dire ce que j'ai à te dire. \nSi cela t'intéresse, clique sur le bouton juste en bas et on y va 😉...";
             let index = 0;
             let speed = 50;
             let animatedText = document.getElementById("animated-text");
